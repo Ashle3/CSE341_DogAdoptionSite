@@ -1,0 +1,15 @@
+GET http://localhost:8080/smallDogs
+###
+
+POST http://localhost:8080/smallDogs HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Taquito",
+    "breed": "Chihuahua",
+    "classification": "small",
+    "gender": "Male",
+    "age": "Adult",
+    "furColor": "Brown",
+    "description": "Is a good boy!"
+}
