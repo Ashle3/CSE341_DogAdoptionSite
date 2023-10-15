@@ -36,8 +36,42 @@ const addsmallDog = async (req, res) => {
     if(result.acknowledged){
       res.status(201).json(result);
     } else {
-      res.status(500).json(response.error || 'An error occurred while creating the contact.');
+      res.status(500).json(response.error || 'An error occurred while creating the dog.');
     }
   };
 
-module.exports = { getAll, getSingle, addsmallDog };
+  const updatesmallDog = async (req, res) => {
+    const userId = new ObjectId(req.params.id);
+    const updatedsmallDog = {
+      name: req.body.name,
+      breed: req.body.breed,
+      classification: req.body.classification,
+      gender: req.body.gender,
+      age: req.body.age,
+      furColor: req.body.furColor,
+      weight: req.body.weight
+    };
+    const result = await mongodb.getDb().db('DogAdoption').collection('smallDogs').replaceOne({ _id: userId }, updatedsmallDog);
+    console.log(result)
+    if(result.modifiedCount > 0){
+      res.status(204).send();
+    } else {
+      res.status(500).json(response.error || 'An error occurred while updating the dog.');
+    }
+  };
+
+  const deletesmallDog = async (req, res) => {
+    const userId = new ObjectId(req.params.id);
+    const result = await mongodb
+      .getDb()
+      .db('DogAdoption')
+      .collection('smallDogs')
+      .deleteOne({ _id: userId });
+    if (result.acknowledged){
+      res.status(200).json(result)
+    } else {
+      res.status(500).json(response.error || 'An error occurred while deleting the dog.');
+    }
+  };
+
+module.exports = { getAll, getSingle, addsmallDog, updatesmallDog, deletesmallDog };

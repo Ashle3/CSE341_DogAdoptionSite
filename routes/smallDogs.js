@@ -9,4 +9,8 @@ router.get('/:id', smallDogsController.getSingle);
 
 router.post('/', smallDogsController.addsmallDog);
 
+router.put('/:id', smallDogsController.updatesmallDog);
+
+router.delete('/:id', smallDogsController.deletesmallDog);
+
 module.exports = router;
