@@ -11,5 +11,5 @@ content-type: application/json
     "gender": "Male",
     "age": "Adult",
     "furColor": "Brown",
-    "description": "Is a good boy!"
+    "weight": "10 lbs."
 }

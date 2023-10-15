@@ -30,7 +30,7 @@ const addsmallDog = async (req, res) => {
       gender: req.body.gender,
       age: req.body.age,
       furColor: req.body.furColor,
-      description: req.body.description
+      weight: req.body.weight
     };
     const result = await mongodb.getDb().db('DogAdoption').collection('smallDogs').insertOne(smallDog);
     if(result.acknowledged){

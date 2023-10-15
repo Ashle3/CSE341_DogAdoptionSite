@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-//swagger route to go here later
+router.use('/', require('./swagger'));
 
 router.use('/smallDogs', require('./smallDogs'));
 
