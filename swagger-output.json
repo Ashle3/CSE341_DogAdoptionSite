@@ -5,10 +5,10 @@
     "description": "List of fictional dogs available for adoption.",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "dog-adoption.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api-docs": {
