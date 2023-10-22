@@ -1,24 +1,37 @@
 const mongodb = require('../db/connection');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAll = async (req, res, next) => {
-    const result = await mongodb.getDb().db('DogAdoption').collection('smallDogs').find();
-    result.toArray().then((lists) => {
+const getAll = (req, res) => {
+  mongodb
+    .getDb()
+    .db('DogAdoption')
+    .collection('smallDogs')
+    .find()
+    .toArray((err, lists) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists);
     });
 };
 
-const getSingle = async (req, res, next) => {
-    const userId = new ObjectId(req.params.id);
-    const result = await mongodb
-      .getDb()
-      .db('DogAdoption')
-      .collection('smallDogs')
-      .find({ _id: userId });
-    result.toArray().then((lists) => {
+const getSingle = (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid id.');
+  }
+  const userId = new ObjectId(req.params.id);
+  mongodb
+    .getDb()
+    .db('DogAdoption')
+    .collection('smallDogs')
+    .find({ _id: userId })
+    .toArray((err, result) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
       res.setHeader('Content-Type', 'application/json');
-      res.status(200).json(lists[0]);
+      res.status(200).json(result[0]);
     });
 };
 
@@ -36,11 +49,14 @@ const addsmallDog = async (req, res) => {
     if(result.acknowledged){
       res.status(201).json(result);
     } else {
-      res.status(500).json(response.error || 'An error occurred while creating the dog.');
+      res.status(500).json(response.error || 'An error occurred while adding the dog.');
     }
   };
 
   const updatesmallDog = async (req, res) => {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid id to update.');
+    }
     const userId = new ObjectId(req.params.id);
     const updatedsmallDog = {
       name: req.body.name,
@@ -61,6 +77,9 @@ const addsmallDog = async (req, res) => {
   };
 
   const deletesmallDog = async (req, res) => {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid id to delete.');
+    }
     const userId = new ObjectId(req.params.id);
     const result = await mongodb
       .getDb()
@@ -70,7 +89,7 @@ const addsmallDog = async (req, res) => {
     if (result.acknowledged){
       res.status(200).json(result)
     } else {
-      res.status(500).json(response.error || 'An error occurred while deleting the dog.');
+      res.status(500).json(response.error || 'An error occurred while deleting the dog from the database.');
     }
   };
 

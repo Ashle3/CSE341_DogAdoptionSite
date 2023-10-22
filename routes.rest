@@ -8,13 +8,13 @@ POST http://localhost:8080/smallDogs HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Opal",
-    "breed": "Pug",
+    "name": "Daisy",
+    "breed": "Chihuahua",
     "classification": "small",
     "gender": "Female",
     "age": "Adult",
     "furColor": "Tan",
-    "weight": "15 lbs."
+    "weight": 12
 }
 
 ###
@@ -30,19 +30,21 @@ content-type: application/json
     "gender": "Male",
     "age": "Adult",
     "furColor": "Brown",
-    "weight": "11 lbs."
+    "weight": "12 lbs."
     
 }
 
 ###
-DELETE http://localhost:8080/smallDogs/ 
+DELETE http://localhost:8080/smallDogs/652b77416708b85380c16e5c 
 
 ###
 
-GET https://dog-adoption.onrender.com/smallDogs
+GET https://dog-adoption.onrender.com/smallDogs HTTP/1.1
+content-type: application/json
 ###
 
-GET https://dog-adoption.onrender.com/smallDogs/652af7c96a79f865056c12f4
+GET https://dog-adoption.onrender.com/smallDogs/652af7c96a79f865056c12f4 HTTP/1.1
+content-type: application/json
 ###
 
 POST https://dog-adoption.onrender.com/smallDogs HTTP/1.1
@@ -59,12 +61,12 @@ content-type: application/json
 }
 ###
 
-PUT https://dog-adoption.onrender.com/smallDogs/652af7c96a79f865056c12f4 HTTP/1.1
+PUT https://dog-adoption.onrender.com/smallDogs/652b78d7b4da141f0db831f7 HTTP/1.1
 content-type: application/json
 
 {
     
-    "name": "Taquito",
+    "name": "Daisy",
     "breed": "Chihuahua",
     "classification": "small",
     "gender": "Male",
@@ -76,6 +78,6 @@ content-type: application/json
 
 ###
 
-DELETE https://dog-adoption.onrender.com/smallDogs
+DELETE https://dog-adoption.onrender.com/smallDogs/652b78d7b4da141f0db831f7
 
 ###
