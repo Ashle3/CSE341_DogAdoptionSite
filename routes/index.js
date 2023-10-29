@@ -5,4 +5,6 @@ router.use('/', require('./swagger'));
 
 router.use('/smallDogs', require('./smallDogs'));
 
+router.use('/largeDogs', require('./largeDogs'));
+
 module.exports = router;
