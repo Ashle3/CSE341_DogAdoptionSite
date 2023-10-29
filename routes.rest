@@ -81,3 +81,25 @@ content-type: application/json
 DELETE https://dog-adoption.onrender.com/smallDogs/652b78d7b4da141f0db831f7
 
 ###
+
+
+//LARGE DOG REQUESTS
+
+//localhost
+GET http://localhost:8080/largeDogs
+
+###
+GET http://localhost:8080/largeDogs/653dd42ed04289187dec53e5 
+
+###
+POST http://localhost:8080/largeDogs HTTP/1.1
+content-type: application/json
+
+  {  "name": "Dog",
+    "breed": "Dog",
+    "classification": "large",
+    "gender": "Female",
+    "age": "Adult",
+    "furColor": "Brown",
+    "weight": "25 lbs."
+  }
